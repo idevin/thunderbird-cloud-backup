@@ -1,0 +1,82 @@
+<b>Copy this profile’s mail to Nextcloud or Google Drive, then restore it into an empty profile.</b>
+
+<b>Cloud Backup</b> encrypts the mailboxes in the current Thunderbird profile and stores them in a <code>ThunderbirdBackup</code> folder on Nextcloud or Google Drive. The passphrase never leaves this computer. A lost passphrase makes the snapshots unreadable.
+
+<b>Key features:</b>
+<ul>
+  <li>Nextcloud (app password) or Google Drive.</li>
+  <li>Mail is encrypted before it is uploaded. The passphrase is not saved on disk.</li>
+  <li>The cloud keeps the three newest snapshots.</li>
+  <li>After you unlock storage, new mail is copied about once a minute while Thunderbird is open.</li>
+  <li>Restore writes the mailboxes into the profile you have open. Do that in an empty profile.</li>
+</ul>
+
+<b>Installation:</b>
+<ol>
+  <li>In Thunderbird, open the menu and choose <b>Add-ons and Themes</b>.</li>
+  <li>Click the gear icon and choose <b>Install Add-on From File…</b>, then select the <code>.xpi</code>. Or type <code>Cloud Backup</code> in the search field, open this add-on, and choose <b>Add to Thunderbird</b>.</li>
+  <li>When Thunderbird asks for access, choose <b>Add</b>.</li>
+</ol>
+
+This add-on needs Thunderbird 128 or newer. Install it in a profile that already contains mail. An empty profile has nothing to back up.
+
+<b>Open Mail backup</b>
+Click the <b>Mail backup</b> toolbar button, or open the add-on card in Add-ons and Themes and choose its preferences. The page shows the profile folder, the Thunderbird version, and how much mailbox data is on disk.
+
+<b>Connect Nextcloud</b>
+<ol>
+  <li>Under <b>Destination</b>, choose <b>Nextcloud</b>.</li>
+  <li>Enter the server URL, such as <code>https://cloud.example</code>, your user name, and an app password from Nextcloud.</li>
+  <li>Choose <b>Save connection</b>.</li>
+</ol>
+The add-on stores files in <code>ThunderbirdBackup</code> on that account.
+
+<b>Connect Google Drive</b>
+<ol>
+  <li>Under <b>Destination</b>, choose <b>Google Drive</b>.</li>
+  <li>In Google Cloud, create an OAuth client and paste its client id into <b>OAuth client id</b>.</li>
+  <li>Copy the redirect URI shown on the page and add that exact URI to the client in Google Cloud.</li>
+  <li>Choose <b>Save connection</b>, then <b>Sign in with Google</b>.</li>
+</ol>
+The add-on stores files in a <code>ThunderbirdBackup</code> folder on that Drive account.
+
+<b>Unlock storage</b>
+<ol>
+  <li>Type a passphrase and choose <b>Unlock storage</b>.</li>
+  <li>The first time, that passphrase creates the encrypted storage. Later, the same passphrase opens it. The status line shows a key fingerprint when the passphrase is accepted.</li>
+</ol>
+The passphrase is kept only for this Thunderbird session. After a restart, type it again before a backup or a restore. If you lose it, the snapshots cannot be read.
+
+<b>Back up</b>
+Choose <b>Back up</b>. The log reports the snapshot id when new mail was copied, or that nothing changed. A mailbox is included after it has been idle for about a minute, so a message you are still receiving waits until that pause. While the passphrase is unlocked, the same copy also runs about once a minute. <b>Refresh list</b> loads the snapshots. The cloud keeps the three newest.
+
+<b>Check a snapshot</b>
+Select a snapshot and choose <b>Verify</b>. The log reports how many files and chunks that snapshot contains.
+
+<b>Restore</b>
+Restore into an empty profile, one that does not already hold the mail you want to keep.
+<ol>
+  <li>Install this add-on in that empty profile and connect the same cloud account.</li>
+  <li>Unlock storage with the same passphrase.</li>
+  <li>Select the snapshot and choose <b>Restore into this profile</b>. Confirm the prompt.</li>
+  <li>When the log says the mailboxes were written, quit Thunderbird.</li>
+</ol>
+Saved passwords are swapped in when Thunderbird quits. On the next launch the add-on installs itself again in that profile. Open Thunderbird after the quit and the restored mail is there.
+
+<b>Support the Developer</b>
+If this add-on makes your life a little easier, please consider supporting my open-source work! You can support the project via my website or send crypto directly:
+
+<a href="https://creotech.org/donate"><b>https://creotech.org/donate</b></a>
+
+<b>Crypto Wallets:</b>
+<ul>
+  <li><b>USDT (TRC20):</b> <code>THE9R17iLeBTgq2d9FprJkPTjZuWGmt8p3</code></li>
+  <li><b>USDT (ERC20):</b> <code>0xbb9267f75c91ddc724aedd479b0b77df779e824e</code></li>
+  <li><b>GRAM (TON):</b> <code>UQCZz1TdrRAXMVo20xfxm0bcJMEvl86slC04iGtScFUbDEYM</code></li>
+  <li><b>BTC:</b> <code>3BoWmP3TX15PCWwUojBLzghVGzYWkdHS6w</code></li>
+</ul>
+
+<b>Bug Reports &amp; Support:</b>
+If you encounter any issues or want to view the source code, please visit the GitHub repository or reach out via <a href="mailto:i.devin@creotech.org">i.devin@creotech.org</a>.
+
+<a href="https://github.com/idevin/thunderbird-cloud-backup">https://github.com/idevin/thunderbird-cloud-backup</a>
