@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mail backup</title>
+    <link rel="stylesheet" href="page.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Mail backup</h1>
+        <p id="profile"></p>
+      </header>
+
+      <section>
+        <h2>Destination</h2>
+        <label>Cloud
+          <select id="backend">
+            <option value="nextcloud">Nextcloud</option>
+            <option value="google">Google Drive</option>
+          </select>
+        </label>
+        <div id="nextcloud-fields">
+          <label>Server URL <input id="nc-url" type="url" placeholder="https://cloud.example" /></label>
+          <label>User <input id="nc-user" autocomplete="username" /></label>
+          <label>App password <input id="nc-pass" type="password" autocomplete="current-password" /></label>
+        </div>
+        <div id="google-fields" hidden>
+          <label>OAuth client id <input id="google-client" /></label>
+          <p class="hint">Set this redirect URI in Google Cloud: <code id="redirect"></code></p>
+          <button id="google-auth" type="button">Sign in with Google</button>
+        </div>
+        <button id="save" type="button">Save connection</button>
+      </section>
+
+      <section>
+        <h2>Passphrase</h2>
+        <label>Passphrase <input id="passphrase" type="password" autocomplete="off" /></label>
+        <button id="unlock" type="button">Unlock storage</button>
+        <p class="hint">The passphrase is not stored on disk. After Thunderbird restarts you must enter it again. A lost passphrase makes the snapshot unreadable.</p>
+      </section>
+
+      <section>
+        <h2>Snapshot</h2>
+        <div class="row">
+          <button id="backup" type="button">Back up</button>
+          <button id="refresh" type="button">Refresh list</button>
+        </div>
+        <label>Snapshots
+          <select id="snapshots"></select>
+        </label>
+        <div class="row">
+          <button id="verify" type="button">Verify</button>
+          <button id="restore" type="button">Restore into this profile</button>
+        </div>
+      </section>
+
+      <pre id="log"></pre>
+    </main>
+    <script type="module" src="page.js"></script>
+  </body>
+</html>

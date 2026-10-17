@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Cloud Backup",
+  "description": "Copies the current profile's mailboxes to Google Drive or Nextcloud and restores them into an empty profile.",
+  "version": "0.1.0",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "cloud-backup@thunderbird.local",
+      "strict_min_version": "128.0",
+      "strict_max_version": "200.*"
+    }
+  },
+  "permissions": ["storage", "identity", "alarms"],
+  "host_permissions": [
+    "https://www.googleapis.com/*",
+    "https://oauth2.googleapis.com/*",
+    "https://accounts.google.com/*"
+  ],
+  "optional_host_permissions": ["https://*/*", "http://*/*"],
+  "background": {
+    "scripts": ["background.js"],
+    "type": "module"
+  },
+  "options_ui": {
+    "page": "page/index.html",
+    "open_in_tab": true
+  },
+  "action": {
+    "default_title": "Mail backup"
+  },
+  "experiment_apis": {
+    "cloudBackup": {
+      "schema": "experiment/schema.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "paths": [["cloudBackup"]],
+        "script": "experiment/parent.js"
+      }
+    }
+  }
+}

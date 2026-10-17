@@ -1,0 +1,143 @@
+[
+  {
+    "namespace": "cloudBackup",
+    "functions": [
+      {
+        "name": "profileInfo",
+        "type": "function",
+        "async": true,
+        "parameters": [],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "listFiles",
+        "type": "function",
+        "async": true,
+        "parameters": [],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "readSlice",
+        "type": "function",
+        "async": true,
+        "parameters": [
+          { "name": "relPath", "type": "string" },
+          { "name": "offset", "type": "string" },
+          { "name": "length", "type": "integer" }
+        ],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "readSmall",
+        "type": "function",
+        "async": true,
+        "parameters": [{ "name": "relPath", "type": "string" }],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "backupDatabase",
+        "type": "function",
+        "async": true,
+        "parameters": [{ "name": "relPath", "type": "string" }],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "readState",
+        "type": "function",
+        "async": true,
+        "parameters": [],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "writeState",
+        "type": "function",
+        "async": true,
+        "parameters": [{ "name": "json", "type": "string" }],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "accountPrefs",
+        "type": "function",
+        "async": true,
+        "parameters": [],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "stageAddon",
+        "type": "function",
+        "async": true,
+        "parameters": [],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "beginFile",
+        "type": "function",
+        "async": true,
+        "parameters": [{ "name": "relPath", "type": "string" }],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "appendFile",
+        "type": "function",
+        "async": true,
+        "parameters": [
+          { "name": "relPath", "type": "string" },
+          { "name": "b64", "type": "string" }
+        ],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "beginStaging",
+        "type": "function",
+        "async": true,
+        "parameters": [{ "name": "name", "type": "string" }],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "appendStaging",
+        "type": "function",
+        "async": true,
+        "parameters": [
+          { "name": "name", "type": "string" },
+          { "name": "b64", "type": "string" }
+        ],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "armRestore",
+        "type": "function",
+        "async": true,
+        "parameters": [{ "name": "json", "type": "string" }],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "rearmIfPending",
+        "type": "function",
+        "async": true,
+        "parameters": [],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "reinstallIfMarked",
+        "type": "function",
+        "async": true,
+        "parameters": [],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "setSessionKey",
+        "type": "function",
+        "async": true,
+        "parameters": [{ "name": "b64", "type": "string" }],
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "getSessionKey",
+        "type": "function",
+        "async": true,
+        "parameters": [],
+        "returns": { "type": "string" }
+      }
+    ]
+  }
+]
