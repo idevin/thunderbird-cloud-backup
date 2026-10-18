@@ -1,0 +1,60 @@
+# Push a tag that matches manifest.json "version", for example v0.1.1.
+# Repository secrets: ATN_SIGN_KEY and ATN_SIGN_SECRET
+# from https://addons.thunderbird.net/developers/addon/api/key/
+
+name: Publish
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the tag matches the add-on version
+        run: |
+          version="$(jq -r .version manifest.json)"
+          tag="${GITHUB_REF_NAME#v}"
+          if [ "$tag" != "$version" ]; then
+            echo "Tag ${GITHUB_REF_NAME} does not match manifest version ${version}."
+            exit 1
+          fi
+          echo "version=${version}" >> "$GITHUB_ENV"
+
+      - name: Build the xpi
+        id: build
+        uses: kewisch/action-web-ext@v2
+        with:
+          cmd: build
+          source: .
+          channel: listed
+          filename: cloud-backup-{version}.xpi
+          ignoreFiles: '["releases/**","description.html","README.md","LICENSE","package.json","package-lock.json","test/**","**/__pycache__/**","**/*.pyc","icons/render_icon.py","helper/libtrayhook.so","helper/xparent"]'
+
+      - name: Submit to addons.thunderbird.net
+        uses: kewisch/action-web-ext@v2
+        with:
+          cmd: sign
+          source: ${{ steps.build.outputs.target }}
+          channel: listed
+          apiUrlPrefix: https://addons.thunderbird.net/api/v4
+          apiKey: ${{ secrets.ATN_SIGN_KEY }}
+          apiSecret: ${{ secrets.ATN_SIGN_SECRET }}
+
+      - name: Attach the xpi to the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          asset="${{ steps.build.outputs.target }}"
+          if gh release view "v${version}" >/dev/null 2>&1; then
+            gh release upload "v${version}" "$asset" --clobber
+          else
+            gh release create "v${version}" "$asset" --title "v${version}" --notes "Version ${version}."
+          fi
