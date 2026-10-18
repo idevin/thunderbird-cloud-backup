@@ -53,8 +53,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           asset="${{ steps.build.outputs.target }}"
+          name="$(jq -r .name manifest.json)"
+          if [ "$name" = "__MSG_extensionName__" ]; then
+            name="$(jq -r .extensionName.message _locales/en/messages.json)"
+          fi
+          title="${name} ${version}"
           if gh release view "v${version}" >/dev/null 2>&1; then
             gh release upload "v${version}" "$asset" --clobber
+            gh release edit "v${version}" --title "$title"
           else
-            gh release create "v${version}" "$asset" --title "v${version}" --notes "Version ${version}."
+            gh release create "v${version}" "$asset" --title "$title" --notes "Version ${version}."
           fi
