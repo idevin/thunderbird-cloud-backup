@@ -18,3 +18,5 @@ This add-on needs Thunderbird 128 or newer. Install it in a profile that already
 2. In the search field, type `Cloud Backup` and press Enter.
 3. Open the result for this add-on, by Ilya Devin, and choose **Add to Thunderbird**.
 4. When Thunderbird asks for access, choose **Add**.
+
+[![Give me a beer](https://img.shields.io/badge/Give%20me%20a%20beer-%F0%9F%8D%BA-FFDD00)](https://creotech.org/donate)
